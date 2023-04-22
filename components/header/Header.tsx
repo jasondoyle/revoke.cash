@@ -27,7 +27,7 @@ const Header = ({ searchBar = true }: Props) => {
             <Image
               src="/assets/images/revoke.svg"
               alt="Revoke.cash logo"
-              height="48"
+              height="49"
               width="240"
               className="filter dark:invert"
             />
