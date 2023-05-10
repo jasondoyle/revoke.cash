@@ -9,7 +9,7 @@ const HowTo = () => {
 
   return (
     <FullWidthLandingSection title={t('landing:how_to.title')} inverted>
-      <div className="flex flex-col md:flex-row gap-4 pt-8">
+      <div className="flex flex-col md:flex-row gap-4 pt-8 max-w-6xl">
         <ExplanationBubble title={t('landing:how_to.paragraph_1.title')} icon={<LinkIcon className="w-12 h-12" />}>
           <Trans i18nKey="landing:how_to.paragraph_1.description" components={[<span className="italic" />]} />
         </ExplanationBubble>

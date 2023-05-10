@@ -43,7 +43,7 @@ const SearchBar = (props: Props) => {
       onChange={(ev) => setValue(ev.target.value.trim())}
       value={value}
       placeholder={t('common:nav.search')}
-      className="w-full max-w-3xl text-base sm:text-lg"
+      className="w-full text-base sm:text-lg"
     >
       {value && validating && <Spinner className="w-4 h-4" />}
       {value && !validating && !isValid && <XMarkIcon className="w-6 h-6 text-red-500" />}

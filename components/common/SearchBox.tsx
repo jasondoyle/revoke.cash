@@ -13,7 +13,7 @@ interface Props {
 
 const SearchBox = ({ onSubmit, onChange, value, placeholder, children, className }: Props) => {
   const classes = twMerge(
-    'h-9 flex gap-2 items-center border border-black dark:border-white rounded-lg px-2 font-medium',
+    'h-9 flex gap-2 items-center border-2 border-black dark:border-white rounded-lg px-2 font-medium',
     'focus-within:ring-1 focus-within:ring-black dark:focus-within:ring-white',
     className
   );

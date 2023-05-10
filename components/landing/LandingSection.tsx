@@ -12,7 +12,7 @@ const LandingSection = ({ title, size, children }: Props) => {
 
   return (
     <div className="w-full px-4">
-      <div className="flex flex-col gap-4 md:gap-4 max-w-3xl mx-auto">
+      <div className="flex flex-col gap-4 md:gap-4 max-w-6xl mx-auto">
         {title && <h2 className={titleClasses}>{title}</h2>}
         <div className="flex flex-col gap-4">{children}</div>
       </div>
