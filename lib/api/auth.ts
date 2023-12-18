@@ -44,5 +44,6 @@ export const checkActiveSession = async (req: NextApiRequest, res: NextApiRespon
   // TODO
   const session = await getIronSession<RevokeSession>(req, res, IRON_OPTIONS);
   console.log('>>>>>>', session.ip, requestIp.getClientIp(req));
+  console.log(req.headers);
   return true;
 };
