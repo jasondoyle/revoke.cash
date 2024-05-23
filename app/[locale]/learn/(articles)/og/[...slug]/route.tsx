@@ -16,9 +16,6 @@ interface Props {
 export const dynamic = 'error';
 export const dynamicParams = false;
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/jpg';
-
 export const generateStaticParams = () => {
   const slugs = getAllContentSlugs('learn');
   return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
