@@ -13,16 +13,11 @@ interface Props {
 export const dynamic = 'error';
 export const dynamicParams = false;
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/jpg';
-
-const OgImage = async ({ params }: Props) => {
+export async function GET(req: Request, { params }: Props) {
   const t = await getTranslations({ locale: params.locale });
 
-  const title = t(`learn.meta.title`);
-  const background = loadDataUrl(`public/assets/images/token-approval-checker/cover.jpg`, 'image/jpeg');
+  const title = t(`faq.meta.title`);
+  const background = loadDataUrl(`public/assets/images/learn/faq/cover.jpg`, 'image/jpeg');
 
   return generateOgImage({ title, background });
-};
-
-export default OgImage;
+}

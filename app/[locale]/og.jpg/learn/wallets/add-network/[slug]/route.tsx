@@ -16,15 +16,12 @@ interface Props {
 export const dynamic = 'error';
 export const dynamicParams = false;
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/jpg';
-
 export const generateStaticParams = () => {
   const slugs = SUPPORTED_CHAINS.map(getChainSlug);
   return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 };
 
-const OgImage = async ({ params }: Props) => {
+export async function GET(req: Request, { params }: Props) {
   const t = await getTranslations({ locale: params.locale });
 
   const chainName = getChainName(getChainIdFromSlug(params.slug));
@@ -32,6 +29,4 @@ const OgImage = async ({ params }: Props) => {
   const background = loadDataUrl('public/assets/images/learn/wallets/add-network/cover.jpg', 'image/jpeg');
 
   return generateOgImage({ title, background });
-};
-
-export default OgImage;
+}

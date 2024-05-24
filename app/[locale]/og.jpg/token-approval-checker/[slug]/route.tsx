@@ -1,5 +1,5 @@
 import { locales } from 'lib/i18n/config';
-import { getAllLearnCategories } from 'lib/utils/markdown-content';
+import { SUPPORTED_CHAINS, getChainIdFromSlug, getChainName, getChainSlug } from 'lib/utils/chains';
 import { generateOgImage, loadDataUrl } from 'lib/utils/og';
 import { getTranslations } from 'next-intl/server';
 
@@ -9,28 +9,24 @@ import { getTranslations } from 'next-intl/server';
 interface Props {
   params: {
     locale: string;
-    category: string;
+    slug: string;
   };
 }
 
 export const dynamic = 'error';
 export const dynamicParams = false;
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/jpg';
-
 export const generateStaticParams = () => {
-  const categorySlugs = getAllLearnCategories();
-  return locales.flatMap((locale) => categorySlugs.map((category) => ({ locale, category })));
+  const slugs = SUPPORTED_CHAINS.map(getChainSlug);
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 };
 
-const OgImage = async ({ params }: Props) => {
+export async function GET(req: Request, { params }: Props) {
   const t = await getTranslations({ locale: params.locale });
 
-  const title = t(`learn.sections.${params.category}.title`);
-  const background = loadDataUrl(`public/assets/images/learn/${params.category}/cover.jpg`, 'image/jpeg');
+  const chainName = getChainName(getChainIdFromSlug(params.slug));
+  const title = t(`token_approval_checker.meta.title`, { chainName });
+  const background = loadDataUrl(`public/assets/images/token-approval-checker/cover.jpg`, 'image/jpeg');
 
   return generateOgImage({ title, background });
-};
-
-export default OgImage;
+}
