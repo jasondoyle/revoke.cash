@@ -1,3 +1,4 @@
+import { locales } from 'lib/i18n/config';
 import { generateOgImage, loadDataUrl } from 'lib/utils/og';
 import { getTranslations } from 'next-intl/server';
 
@@ -12,6 +13,10 @@ interface Props {
 
 export const dynamic = 'error';
 export const dynamicParams = false;
+
+export const generateStaticParams = () => {
+  return locales.map((locale) => ({ locale }));
+};
 
 export async function GET(req: Request, { params }: Props) {
   const t = await getTranslations({ locale: params.locale });

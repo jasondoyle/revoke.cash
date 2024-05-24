@@ -1,3 +1,4 @@
+import { locales } from 'lib/i18n/config';
 import { generateOgImage, loadDataUrl } from 'lib/utils/og';
 import { getTranslations } from 'next-intl/server';
 
@@ -13,16 +14,15 @@ interface Props {
 export const dynamic = 'error';
 export const dynamicParams = false;
 
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/jpg';
-
-const OgImage = async ({ params }: Props) => {
-  const t = await getTranslations({ locale: params.locale });
-
-  const title = t(`exploits.meta.title`);
-  const background = loadDataUrl(`public/assets/images/exploits/cover.jpg`, 'image/jpeg');
-
-  return generateOgImage({ title, background });
+export const generateStaticParams = () => {
+  return locales.map((locale) => ({ locale }));
 };
 
-export default OgImage;
+export async function GET(req: Request, { params }: Props) {
+  const t = await getTranslations({ locale: params.locale });
+
+  const title = t(`blog.meta.title`);
+  const background = loadDataUrl(`public/assets/images/blog/cover.jpg`, 'image/jpeg');
+
+  return generateOgImage({ title, background });
+}
